@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Salary Slip - April 2023</title>
+    <title>Salary Slip - PDF Corrected</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <style>
         body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
@@ -14,19 +14,18 @@
             border: 1px solid #000;
             box-shadow: 0 0 8px rgba(0,0,0,0.2);
         }
-        h2, h3, p {
-            text-align: center;
-            margin: 4px 0;
-        }
+        h2, h3, p { text-align: center; margin: 4px 0; }
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 5px 0;
+            table-layout: fixed; /* Important to fix width issues */
+            word-wrap: break-word;
         }
         th, td {
             border: 1px solid #000;
             padding: 6px;
-            font-size: 14px;
+            font-size: 13px;
         }
         .summary {
             margin-top: 8px;
@@ -48,9 +47,7 @@
             cursor: pointer;
             border-radius: 4px;
         }
-        button:hover {
-            background: #0056b3;
-        }
+        button:hover { background: #0056b3; }
     </style>
 </head>
 <body>
@@ -62,36 +59,16 @@
     <h3>Payslip for the month of April - 2023</h3>
 
     <table>
-        <tr>
-            <td>Employee Name: <strong>Mehendale Girish Vasant</strong></td>
-            <td>ID No: <strong>14112</strong></td>
-        </tr>
-        <tr>
-            <td>Employee Code: <strong>10001</strong></td>
-            <td>Date of Joining: <strong>15/05/1989</strong></td>
-        </tr>
-        <tr>
-            <td>PF UAN No: <strong>NA</strong></td>
-            <td>ESIC No: <strong>NA</strong></td>
-        </tr>
-        <tr>
-            <td>Department: <strong>Management</strong></td>
-            <td>Designation: <strong>Managing Director</strong></td>
-        </tr>
-        <tr>
-            <td>Account Number: <strong>033801501765</strong></td>
-            <td>IFSC Code: <strong>ICIC0000039</strong></td>
-        </tr>
-        <tr>
-            <td>Month Days: <strong>30</strong></td>
-            <td>Paid Days: <strong>30.00</strong></td>
-        </tr>
+        <tr><td>Employee Name: <strong>Mehendale Girish Vasant</strong></td><td>ID No: <strong>14112</strong></td></tr>
+        <tr><td>Employee Code: <strong>10001</strong></td><td>Date of Joining: <strong>15/05/1989</strong></td></tr>
+        <tr><td>PF UAN No: <strong>NA</strong></td><td>ESIC No: <strong>NA</strong></td></tr>
+        <tr><td>Department: <strong>Management</strong></td><td>Designation: <strong>Managing Director</strong></td></tr>
+        <tr><td>Account Number: <strong>033801501765</strong></td><td>IFSC Code: <strong>ICIC0000039</strong></td></tr>
+        <tr><td>Month Days: <strong>30</strong></td><td>Paid Days: <strong>30.00</strong></td></tr>
     </table>
 
     <table>
-        <tr>
-            <th>Leave Type</th><th>Opening Balance</th><th>Allocated</th><th>Availed Leave</th><th>Balance Leave</th>
-        </tr>
+        <tr><th>Leave Type</th><th>Opening Balance</th><th>Allocated</th><th>Availed Leave</th><th>Balance Leave</th></tr>
         <tr><td>Sick Leave</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td></tr>
         <tr><td>Privilege Leave</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td></tr>
         <tr><td>Casual Leave</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td></tr>
@@ -126,7 +103,14 @@
 <script>
 function downloadPDF() {
     var element = document.getElementById('invoice');
-    html2pdf().from(element).save('Salary_Slip_April_2023.pdf');
+    var opt = {
+        margin:       0.5,          // 0.5 inch margin
+        filename:     'Salary_Slip_April_2023.pdf',
+        image:        { type: 'jpeg', quality: 1 },
+        html2canvas:  { scale: 2 }, // Higher scale = better quality
+        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save();
 }
 </script>
 
