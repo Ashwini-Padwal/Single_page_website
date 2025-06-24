@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payslip - April 2023</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 30px;
+            background: #f9f9f9;
+        }
+        .payslip {
+            background: #fff;
+            padding: 20px 40px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: auto;
+        }
+        h2, h3 {
+            text-align: center;
+            margin: 5px 0;
+        }
+        p {
+            text-align: center;
+            margin: 2px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #e8f0fe;
+        }
+        .no-border {
+            border: none;
+        }
+        .right {
+            text-align: right;
+        }
+        .summary {
+            margin-top: 10px;
+        }
+        .footer {
+            font-style: italic;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 10px;
+            color: #555;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div id="invoice" class="payslip">
+    <h2>Microverse Automation Pvt. Ltd.</h2>
+    <p>79/2, Dangat Industrial Estate, NDA Road, Shivane, Pune Maharashtra - 411023</p>
+    <h3>Payslip for the month of April - 2023</h3>
+
+    <table>
+        <tr><td>Employee Name:</td><td>Mehendale Girish Vasant</td><td>ID No:</td><td>14112</td></tr>
+        <tr><td>Employee Code:</td><td>10001</td><td>Date of Joining:</td><td>15/05/1989</td></tr>
+        <tr><td>PF UAN No:</td><td>NA</td><td>ESIC No:</td><td>NA</td></tr>
+        <tr><td>Department:</td><td>Management</td><td>Designation:</td><td>Managing Director</td></tr>
+        <tr><td>Account Number:</td><td>033801501765</td><td>IFSC Code:</td><td>ICIC0000039</td></tr>
+        <tr><td>Month Days:</td><td>30</td><td>Paid Days:</td><td>30.00</td></tr>
+    </table>
+
+    <h3>Leave Details</h3>
+    <table>
+        <tr>
+            <th>Leave Type</th><th>Opening Balance</th><th>Allocated</th><th>Availed Leave</th><th>Balance Leave</th>
+        </tr>
+        <tr><td>Sick Leave</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td></tr>
+        <tr><td>Privilege Leave</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td></tr>
+        <tr><td>Casual Leave</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td></tr>
+    </table>
+
+    <h3>Earnings & Deductions</h3>
+    <table>
+        <tr><th>Earnings</th><th>Amount</th><th>Deductions</th><th>Amount</th></tr>
+        <tr><td>Basic</td><td>38156.00</td><td>Provident Fund</td><td>0.00</td></tr>
+        <tr><td>DA</td><td>0.00</td><td>ESIC</td><td>0.00</td></tr>
+        <tr><td>H.R.A.</td><td>30591.00</td><td>Profession Tax</td><td>0.00</td></tr>
+        <tr><td>Conveyance Allowance</td><td>7648.00</td><td>MLWF</td><td>0.00</td></tr>
+        <tr><td>Education Allowance</td><td>200.00</td><td>Income Tax</td><td>24003.00</td></tr>
+        <tr><td>Medical Allowance</td><td>7648.00</td><td>Advance</td><td>0.00</td></tr>
+        <tr><td>Special Allowance</td><td>65757.00</td><td></td><td></td></tr>
+    </table>
+
+    <div class="summary">
+        <p><strong>Total Earnings:</strong> ₹150000.00</p>
+        <p><strong>Total Deductions:</strong> ₹24003.00</p>
+        <p><strong>Net Pay:</strong> ₹125997.00</p>
+        <p><strong>Amount in words:</strong> One Lakh Twenty Five Thousands Nine Hundred Ninety Seven Rupees Only</p>
+    </div>
+
+    <p class="footer">This is a computer-generated payslip. Signature is not required.</p>
+</div>
+
+<button onclick="downloadPDF()">Download PDF</button>
+
+<script>
+function downloadPDF() {
+    var element = document.getElementById('invoice');
+    html2pdf().from(element).save('Payslip_April_2023.pdf');
+}
+</script>
+
+</body>
+</html>
